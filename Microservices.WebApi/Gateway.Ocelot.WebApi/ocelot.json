@@ -1,0 +1,80 @@
+{
+
+  "Routes": [
+    //Users
+    {
+      "DownstreamPathTemplate": "/api/users",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 27493
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/users",
+      "UpstreamHttpMethod": [ "POST", "PUT", "GET" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "WebAPIKey",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 27493
+        }
+      ],
+      "DownstreamPathTemplate": "/api/users/{id}",
+      "DownstreamScheme": "http",
+      "UpstreamHttpMethod": [ "GET", "DELETE" ],
+      "UpstreamPathTemplate": "/gateway/users/{id}",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "WebAPIKey",
+        "AllowedScopes": []
+      }
+    },
+    //Register
+    {
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 27492
+        }
+      ],
+      "DownstreamPathTemplate": "/api/register/authenticate",
+      "DownstreamScheme": "http",
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamPathTemplate": "/gateway/register/authenticate"
+    },
+    {
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 27492
+        }
+      ],
+      "DownstreamPathTemplate": "/api/register",
+      "DownstreamScheme": "http",
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamPathTemplate": "/gateway/register"
+    },
+    {
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 27492
+        }
+      ],
+      "DownstreamPathTemplate": "/api/register/tokenIsValid",
+      "DownstreamScheme": "http",
+      "UpstreamHttpMethod": [ "GET" ],
+      "UpstreamPathTemplate": "/gateway/register/tokenIsValid"
+    }
+  ],
+  "GlobalConfiguration": {
+    "RequestIdKey": "OcRequestId",
+    "AdministrationPath": "/administration"
+  }
+
+}
